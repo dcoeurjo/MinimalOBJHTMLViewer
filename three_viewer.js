@@ -9,7 +9,12 @@ $(document).ready( function() {
     var renderer = new THREE.WebGLRenderer({ alpha: true });
     renderer.setSize( canvas_width, canvas_height );
     renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-    renderer.shadowMap.enabled = true;
+    var shadow = $(this).attr("three_shadow");
+    if (shadow === "false")
+      renderer.shadowMap.enabled = false;
+    else
+      renderer.shadowMap.enabled = true;
+
     $(this).append(renderer.domElement);
 
     var prev_x = undefined;
@@ -101,4 +106,3 @@ $(document).ready( function() {
     render();
   });
 });
-
